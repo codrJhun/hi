@@ -177,6 +177,14 @@ section .section-image img{
   filter: drop-shadow(0 0 5px rgba(0,0,0,1));
 }
 
+.about-me{
+  width: 100%;
+  min-height: 60vh;
+  background-color: aqua;
+  margin: 100px 0 0 0;
+  padding: 1rem;
+}
+
 
 
 
