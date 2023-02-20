@@ -5,10 +5,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 body{
-  background: url('bg.jpg');
+  /* background: url('bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 header{
   width: 100%;
@@ -17,7 +17,7 @@ header{
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 1);
   position: fixed;
   top: 0;
   z-index: 1;
@@ -27,6 +27,16 @@ header{
   font-weight: bold;
   color: white;
   flex: 1;
+}
+.logo:hover{
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, 0); }
+  50% { transform: translate(5px, 0); }
+  75% { transform: translate(-5px, 0); }
+  100% { transform: translate(0, 0); }
 }
 .hamburger{
   display: none;
@@ -42,34 +52,129 @@ header{
   text-decoration: none;
   padding: .8rem 1rem;
   font-weight: bold;
-  transition: 0.2s;
+  transition: .5s;
   border-radius: 50px;
   margin: 0 5px;
+  position: relative;
 }
-.nav-bar ul li a:hover{
-  color: black;
+.nav-bar ul li a::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
   background-color: white;
+  transition: .6s;
+  transform: scaleX(0);
+  transform-origin: center;
 }
 
-.nav-bar ul li a.active{
-  color: black;
-  background-color: #fefefe;
+.nav-bar ul li a:hover::before{
+  transform: scaleX(1);
+}
+
+.nav-bar ul li a.active::before{
+  transform: scaleX(1);
 }
 section{
-  background-color: rgba(22, 11, 1, 0.5);
-  margin: 100px 50px 0 50px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
+  display: flex;
+  overflow: hidden;
+  height: 90vh;
+  margin-top: 20px;justify-content: center;
+  align-items: center;
 }
-section h1{
-  padding: 1rem 0px 0px 0px;
+section .section-text{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 40px;
+  padding: 10% 0 0 9%;
+  position: relative;
+}
+ .section-text h2 .wave{
+  font-size: 40px;
+  animation: waved;
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;  
+  display: inline-block;
+}
+@keyframes waved {
+  0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+  
 }
 
-section p{
-  text-align: justify;
-  padding: 2rem;
-  color: white;
-  margin: 1rem;
+section .section-text h2{
+  font-size: 25px;
+}
+section .section-text h1{
+  font-size: 35px;
+  margin-bottom: 30px;
+}
+section .section-text h3{
+  font-size: 20px;
+  margin: 100px 0px;
+  position: absolute;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  animation: 
+    typing 4.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 35% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+section .section-text .social-icons ul{
+  margin: 0 0 0 -8px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 5px;
+}
+section .section-text .social-icons li{
+  transition: .6s;
+  margin-top: 20px;
+}
+section .section-text .social-icons ul li a img{
+  width: 50px;
+}
+section .section-text .social-icons li:hover{
+  transform: scale(1.2);
+  transition: .6s;
+}
+
+section .section-image{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 7rem 2rem 0 0;
+}
+section .section-image img{
+  width: 400px;
+  height: auto;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,1));
 }
 
 
@@ -82,6 +187,9 @@ section p{
   }
   .nav-bar ul li a{
     font-size: 15px;
+  }
+  section .section-image img{
+    width: 300px;
   }
 }
 @media only screen and (max-width:700px){
@@ -134,5 +242,11 @@ section p{
   }
   .nav-bar a{
     display: block;
+  }
+  section .section-image{
+    display: none;
+  }
+  section .section-image .social-icons ul li a img{
+    width: 100px;
   }
 }
