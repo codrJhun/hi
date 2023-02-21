@@ -4,6 +4,10 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html{
+  scroll-behavior: smooth;
+}
 body{
   /* background: url('bg.jpg');
   background-repeat: no-repeat;
@@ -177,12 +181,20 @@ section .section-image img{
   filter: drop-shadow(0 0 5px rgba(0,0,0,1));
 }
 
-.about-me{
+
+#about-me{
   width: 100%;
   min-height: 60vh;
   background-color: aqua;
   margin: 100px 0 0 0;
   padding: 1rem;
+  opacity: 0;
+  transition: opacity 4s ease, transform 2.5s ease;
+  transform: translatex(-100%);
+}
+#about-me.animate{
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
@@ -198,6 +210,13 @@ section .section-image img{
   }
   section .section-image img{
     width: 300px;
+  }
+  section .section-text{
+    margin-top: 5%;
+  }
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 55% }
   }
 }
 @media only screen and (max-width:700px){
@@ -256,5 +275,18 @@ section .section-image img{
   }
   section .section-image .social-icons ul li a img{
     width: 100px;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 38% }
+  }
+
+  
+}
+@media only screen and (max-width:400px){
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 72% }
   }
 }
